@@ -287,7 +287,7 @@ class Plyr extends Component {
       const {key, kind, label, src, srclang, default: def, ...attributes} = source;
       return (<track
         key={key || index}
-        kind={kind}
+        kind={kind || "captions"}
         label={label}
         src={src}
         srclang={srclang}
