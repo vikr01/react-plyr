@@ -283,6 +283,19 @@ class Plyr extends Component {
       captions
     } = this.props;
 
+    const captionsMap = captions.map((source,index)=>{
+      const {key, kind, label, src, srclang, default: def, ...attributes} = source;
+      return (<track
+        key={key || index}
+        kind={kind}
+        label={label}
+        src={src}
+        srclang={srclang}
+        default={def}
+        {...attributes}
+      />);
+    });
+
     if (sources && Array.isArray(sources) && sources.length) {
       return (
         <video
@@ -298,18 +311,7 @@ class Plyr extends Component {
               size={source.size && source.size}
             />
           )}
-          {captions.map((source,index)=>{
-            const {key, kind, label, src, srclang, default: def, ...attributes} = source;
-            return (<track
-              key={key || index}
-              kind={kind}
-              label={label}
-              src={src}
-              srclang={srclang}
-              default={def}
-              {...attributes}
-            />);
-          })}
+          {captionsMap}
         </video>
       )
     }
@@ -320,7 +322,9 @@ class Plyr extends Component {
         src={url}
         preload={preload}
         poster={poster}
-      />
+      >
+      {captionsMap}
+      </video>
     );
   }
 
