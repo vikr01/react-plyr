@@ -299,14 +299,14 @@ class Plyr extends Component {
             />
           )}
           {captions.map((source,index)=>{
-            const {key, kind, label, src, srclang, default, ...attributes} = source;
+            const {key, kind, label, src, srclang, default: def, ...attributes} = source;
             return (<track
               key={key || index}
               kind={kind}
               label={label}
               src={src}
               srclang={srclang}
-              default={default}
+              default={def}
               {...attributes}
             />);
           })}
